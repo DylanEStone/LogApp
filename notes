@@ -1,0 +1,10 @@
+Postgre Notes
+
+-Connect to another database
+\c dbname
+
+-list tables
+\d
+
+Node Notes
+node app.js
