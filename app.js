@@ -6,31 +6,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const http = require('http');
-const Sequelize = require('sequelize');
 
-const db = new Sequelize('LogDB', 'postgres', 'a5ac6f3e8988', {
-    host: 'localhost',
-    dialect: 'postgres',
-    opetatorsAliases: false,
-
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    },
-});
+// database
+const db = require('./config/database');
 
 // testdb
 db.authenticate()
     .then(() => console.log('Database Connected'))
     .catch(err => console.log('Error: ' + err));
-
-// for logging requests to console
-app.use(logger('dev'));
-//parse incoming requests data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 //listen
 app.listen(3000, () => {
@@ -41,6 +24,9 @@ app.listen(3000, () => {
 app.get("/", (req, res) => {
     res.render('index');
 });
+
+// Entries routes
+app.use('/entries', require('./routes/entries'));
 
 //const { Sequelize, Model, DataTypes } = require('sequelize');
 
