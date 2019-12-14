@@ -1,5 +1,6 @@
 // Setup
 const express = require('express');
+const exphbs = require('express-handlebars');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -10,6 +11,16 @@ app.use(logger('dev'));
 //parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//listen
+app.listen(3000, () => {
+    console.log('Server listening on 3000');
+})
+
+// Routes
+app.get("/", (req, res) => {
+    res.render('index');
+});
 
 //const { Sequelize, Model, DataTypes } = require('sequelize');
 
@@ -31,15 +42,6 @@ Entry.init({
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-// Routes
-app.get("/", (req, res) => {
-    res.render('index');
-});
 
 // Links
 app.use(express.static(path.join(__dirname, 'public')));
-
-//listen
-app.listen(3000, () => {
-    console.log('Server listening on 3000');
-})
