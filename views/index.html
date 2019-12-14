@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="DSOT Logger">
+    <meta name="author" content="Dylan Stone">
+
+    <title>DSOT Logging Utility</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Logging Utility</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Log
+              <span class="sr-only">(current)</span>
+            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TRK Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DRMS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DSOT Web</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class=jumbotron>
+        <form id="my_form" action="#" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="time">Time</label>
+                    <input type="text" name="UTC" class="form-control" id="UTC">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputDSS">DSS</label>
+                    <input type="text" name="DSS" class="form-control" id="DSS">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputSC">S/C</label>
+                    <input type="text" name="SC" class="form-control" id="SC">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputEntryType">Entry Type</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                      <option value="Event" selected>Event</option>
+                      <option value="DR">DR</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputEntry">Entry</label>
+                    <input name="log" class="form-control" id="Entry">
+                </div>
+            </div>
+            <p>
+                <input type="submit" value="Send" class="btn btn-dark btn-block" />
+            </p>
+        </form>
+        <div class="jumbotron">
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.slim.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/formHandler.js"></script>
+</body>
+
+</html>
