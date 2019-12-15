@@ -4,11 +4,12 @@ const exphbs = require('express-handlebars');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
-const app = express();
 const http = require('http');
 
 // database
 const db = require('./config/database');
+
+const app = express();
 
 // testdb
 db.authenticate()
@@ -28,17 +29,6 @@ app.get("/", (req, res) => {
 // Entries routes
 app.use('/entries', require('./routes/entries'));
 
-//const { Sequelize, Model, DataTypes } = require('sequelize');
-
-
-/*class Entry extends Model {}
-Entry.init({
-    time: DataTypes.INTEGER,
-    dss: DataTypes.INTEGER,
-    sc: DataTypes.INTEGER,
-    type: DataTypes.STRING,
-    entry: DataTypes.STRING,
-})*/
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');

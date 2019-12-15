@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
-const Entry = require('../models/entry')
+const Sequelize = require('sequelize');
+const Entry = require('../models/entry');
 
 // get entry list
 router.get('/', (req, res) =>
@@ -12,26 +13,29 @@ router.get('/', (req, res) =>
     })
     .catch(err => console.log(err)));
 
+// display add entry from
+//router.get('/add', (req, res) => res.render('add'));
+
 // add an entry
 router.get('/add', (req, res) => {
     const data = {
         time: 2000,
         dss: 43,
         sc: 32,
-        entry_type: false,
+        enttype: false,
         entry: 'GAP OCC'
     }
-    let { time, dss, sc, entry_type, entry } = data
+    let { time, dss, sc, enttype, entry } = data;
 
     //insert into table
     Entry.create({
             time,
             dss,
             sc,
-            entry_type,
+            enttype,
             entry
         })
-        .then(entry => res.redirect('entries'))
+        .then(entry => res.redirect('/entries'))
         .catch(err => console.log(err));
 });
 
