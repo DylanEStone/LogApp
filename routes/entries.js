@@ -8,13 +8,11 @@ const Entry = require('../models/entry');
 router.get('/', (req, res) =>
     Entry.findAll()
     .then(entries => {
-        console.log(entries)
-        res.sendStatus(200)
+        res.render('entries', {
+            entries
+        });
     })
     .catch(err => console.log(err)));
-
-// display add entry from
-//router.get('/add', (req, res) => res.render('add'));
 
 // add an entry
 router.get('/add', (req, res) => {

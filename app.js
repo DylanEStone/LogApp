@@ -1,7 +1,6 @@
 // Setup
 const express = require('express');
 const exphbs = require('express-handlebars');
-const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
@@ -9,12 +8,19 @@ const http = require('http');
 // database
 const db = require('./config/database');
 
-const app = express();
-
 // testdb
 db.authenticate()
     .then(() => console.log('Database Connected'))
     .catch(err => console.log('Error: ' + err));
+
+const app = express();
+
+// Handlebars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //listen
 app.listen(3000, () => {
@@ -30,8 +36,7 @@ app.get("/", (req, res) => {
 app.use('/entries', require('./routes/entries'));
 
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+
 
 
 // Links
