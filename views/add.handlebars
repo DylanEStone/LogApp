@@ -1,0 +1,43 @@
+    <!-- Page Content -->
+   <div id="add" class="jumbotron">
+        {{#each errors}}
+        <div class="error">
+            <p>{{text}}</p>
+        </div>
+        {{/each}}
+        <form id="my_form" action="/entries/add" method="POST" class="form-wrap">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="time">Time</label>
+                    <input type="text" name="time" class="form-control" id="time UTC" value={{time}}>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dss">DSS</label>
+                    <input type="text" name="dss" class="form-control" id="dss" value={{dss}}>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="sc">S/C</label>
+                    <input type="text" name="sc" class="form-control" id="sc" value={{sc}}>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="enttype">Entry Type</label>
+                    <select class="custom-select mr-sm-2" id="enttype inlineFormCustomSelect" value={{entry_type}}>
+                      <option value='0' name="0">Event</option>
+                      <option value="1" name="1">DR</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="entry">Entry</label>
+                    <textarea type="text" name="entry" id="entry" class="form-control" rows="4">{{entry}}</textarea>
+                </div>
+            </div>
+            <p>
+                <input type="submit" value="Add Entry" class="btn btn-dark btn-block" />
+            </p>
+        </form>
+        <div class="jumbotron">
+            <pre id="output"></pre>
+        </div>
+    </div>

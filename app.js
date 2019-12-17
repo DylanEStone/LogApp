@@ -3,7 +3,6 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
-const http = require('http');
 
 // database
 const db = require('./config/database');
@@ -19,25 +18,19 @@ const app = express();
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-//listen
-app.listen(3000, () => {
-    console.log('Server listening on 3000');
-})
-
 // Routes
-app.get("/", (req, res) => {
-    res.render('index');
-});
+app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
 
-// Entries routes
+// Entry routes
 app.use('/entries', require('./routes/entries'));
 
+//listen
+const PORT = process.env.PORT || 5000;
 
-
-
-
-// Links
-app.use(express.static(path.join(__dirname, 'public')));
+app.listen(PORT, console.log(`Server started on port ${PORT}`));

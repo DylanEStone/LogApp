@@ -1,5 +1,8 @@
 Postgre Notes
 
+-Start the server
+pg_ctl -D /var/lib/postgres/data -l logfile start
+
 -Connect to another database
 \c dbname
 
@@ -7,4 +10,6 @@ Postgre Notes
 \d
 
 Node Notes
-node app.js
+-start the npm server
+npm run dev
+
