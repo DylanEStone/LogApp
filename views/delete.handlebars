@@ -1,0 +1,23 @@
+<div id="entries" class="jumbotron fluid-jumbotron" style="background-color: white;">
+    <ul class="list-group">
+        {{#each entries}}
+        <li id="{{id}}"class="list-group-item d-flex justify-content-between align-items-center">
+                {{entry}}
+            <div class= "entry justify-content-end"></span>
+                <span class="badge badge-pill badge-secondary">{{time}}</span>
+                <span class="badge badge-dark badge-pill" id="sc">{{dss}}</span>
+                <span class="badge badge-info badge-pill" id="ant">{{sc}}</span>
+            </div>
+        </li>
+        {{else}}
+            <p>No entries available</p>
+        {{/each}}
+    </ul>
+</div>
+<script>
+$(document).ready(function() {
+    $("li").click(function(event) {
+        alert(event.target.id);
+    });
+});
+</script>

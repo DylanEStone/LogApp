@@ -1,16 +1,33 @@
+
+
 <div id="entries" class="jumbotron fluid-jumbotron" style="background-color: white;">
-    <ul class="list-group">
-        {{#each entries}}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{entry}}
-            <div class= "entry justify-content-end"></span>
-                <span class="badge badge-pill badge-secondary">{{time}}</span>
-                <span class="badge badge-dark badge-pill" id="sc">{{dss}}</span>
-                <span class="badge badge-info badge-pill" id="ant">{{sc}}</span>
-            </div>
-        </li>
-        {{else}}
-            <p>No entries available</p>
-        {{/each}}
-    </ul>
+    <form id="my_form" action="/entries/delete" method="DELETE" class="form-wrap">
+        <p>
+            <input type="delete" value="Delete Selected Entries" class="delete btn btn-dark btn-block" id="delete"/>
+        </p>
+        <ul class="list-group">
+            {{#each entries}}
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="form group col-md-12 d-flex justify-content-between align-items-center">
+                        {{entry}}
+                        <span class="badge badge-info badge-pill"></span>
+                        <div class= "entry justify-content-end"></span>
+                            <span class="badge badge-pill badge-secondary">{{time}}</span>
+                            <span class="badge badge-dark badge-pill" id="sc">{{dss}}</span>
+                            <span class=    "badge badge-info badge-pill" id="ant">{{sc}}</span>
+                            <input style="margin-left:0" class="form-check-input" type="radio" name="id" id={{id}} value="delete">
+                        </div>
+                    </div>
+            </li>
+            {{else}}
+                <p>No entries available</p>
+            {{/each}}
+        </ul>
+    </form>
 </div>
+<script>
+    $("#delete").click(function() {
+        console.log($('input[type=radio][name=id]:checked').attr('id'));
+    });
+</script>

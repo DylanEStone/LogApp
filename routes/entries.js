@@ -12,8 +12,18 @@ router.get('/', (req, res) =>
     }))
     .catch(err => console.log(err)));
 
+router.get('/delete', (req, res) =>
+    Entry.findAll()
+    .then(entries => res.render('delete', {
+        entries
+    }))
+    .catch(err => console.log(err)));
+
 // Display add entry form
 router.get('/add', (req, res) => res.render('add'));
+
+// Display delete Entry Form
+router.get('/delete', (req, res) => res.render('delete'));
 
 // add an entry
 router.post('/add', (req, res) => {
@@ -56,6 +66,22 @@ router.post('/add', (req, res) => {
             .catch(err => console.log(err));
     }
 });
+
+// Delete an Entry
+router.delete('/delete'), (req, res) => {
+    let id = req.body;
+    for (let i = 0; i < id.length; i++) {
+        router.delete('/:id', function(req, res, next) {
+            Article.findByPk(req.params.id[i]).then((entry) => {
+                return entry.destroy();
+            }).then(() => {
+                res.redirect('/entries');
+            });
+        });
+    }
+}
+
+
 
 
 module.exports = router;
