@@ -68,7 +68,7 @@ router.post('/add', (req, res) => {
 });
 
 // Delete an Entry
-router.delete('/delete'), (req, res) => {
+/*router.delete('/delete'), (req, res) => {
     let id = req.body;
     for (let i = 0; i < id.length; i++) {
         router.delete('/:id', function(req, res, next) {
@@ -80,7 +80,7 @@ router.delete('/delete'), (req, res) => {
         });
     }
 }
-
+**/
 
 
 
